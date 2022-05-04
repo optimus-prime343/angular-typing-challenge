@@ -48,8 +48,8 @@ export class AppComponent {
     let randomText: string = '';
     const characters = 'abcdefghijklmnopqrstuvwxyz';
     for (let i = 0; i < length; i++) {
-      const randomNum1 = Math.floor(Math.random() * length);
-      const randomNum2 = Math.floor(Math.random() * length);
+      const randomNum1 = Math.floor(Math.random() * characters.length);
+      const randomNum2 = Math.floor(Math.random() * characters.length);
       randomText += ` ${characters.slice(
         Math.min(randomNum1, randomNum2),
         Math.max(randomNum1, randomNum2)
