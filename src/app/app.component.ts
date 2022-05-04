@@ -1,19 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+    this.text = this.generateRandomText();
+  }
   // time when the user started typing into the input field
   startTime: Date | undefined = undefined;
   // time took by user to type all the provided text
   finishTime: Date | undefined = undefined;
 
   // text to be typed by user
-  text: string =
-    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, aperiam?';
+  text: string = '';
 
   //text typed by user
   userTypedText: string = '';
@@ -44,5 +46,18 @@ export class AppComponent {
 
   hasFinishedTyping(): boolean {
     return this.text === this.userTypedText;
+  }
+  generateRandomText(length: number = 15): string {
+    let randomText: string = '';
+    const characters = 'abcdefghijklmnopqrstuvwxyz';
+    for (let i = 0; i < length; i++) {
+      const randomNum1 = Math.floor(Math.random() * length);
+      const randomNum2 = Math.floor(Math.random() * length);
+      randomText += ` ${characters.slice(
+        Math.min(randomNum1, randomNum2),
+        Math.max(randomNum1, randomNum2)
+      )}`;
+    }
+    return randomText;
   }
 }
