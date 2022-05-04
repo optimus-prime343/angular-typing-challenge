@@ -5,17 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-  ngOnInit(): void {
-    this.text = this.generateRandomText();
-  }
+export class AppComponent {
   // time when the user started typing into the input field
   startTime: Date | undefined = undefined;
   // time took by user to type all the provided text
   finishTime: Date | undefined = undefined;
 
   // text to be typed by user
-  text: string = '';
+  text: string = this.generateRandomText();
 
   //text typed by user
   userTypedText: string = '';
@@ -47,7 +44,7 @@ export class AppComponent implements OnInit {
   hasFinishedTyping(): boolean {
     return this.text === this.userTypedText;
   }
-  generateRandomText(length: number = 15): string {
+  generateRandomText(length: number = 10): string {
     let randomText: string = '';
     const characters = 'abcdefghijklmnopqrstuvwxyz';
     for (let i = 0; i < length; i++) {
@@ -58,6 +55,6 @@ export class AppComponent implements OnInit {
         Math.max(randomNum1, randomNum2)
       )}`;
     }
-    return randomText;
+    return randomText.trim();
   }
 }
